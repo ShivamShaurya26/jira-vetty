@@ -1,0 +1,56 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-zinc-950">
+  <div class="w-full max-w-sm mx-4">
+    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-xl p-8 border border-gray-200 dark:border-zinc-800">
+      <h1 class="text-2xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8 flex items-center justify-center gap-2">
+        Log in
+      </h1>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <div class="space-y-2">
+          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-zinc-950 text-gray-900 dark:text-gray-100"
+            placeholder="admin@test.com"
+          />
+          <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" class="text-red-500 text-xs">
+            <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format.</span>
+          </div>
+        </div>
+        
+        <div class="space-y-2">
+          <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-zinc-950 text-gray-900 dark:text-gray-100"
+            placeholder="••••••••"
+          />
+           <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="text-red-500 text-xs">
+            Password is required.
+          </div>
+        </div>
+        
+        <div *ngIf="errorMessage" class="p-3 text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-md">
+          {{ errorMessage }}
+        </div>
+
+        <button type="submit" class="w-full py-2 px-4 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
+          Log in
+        </button>
+      </form>
+      
+      <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
+        or, <span class="text-blue-600 cursor-pointer hover:underline">sign up</span>
+      </p>
+    </div>
+    
+    <p class="text-center text-xs text-gray-400 mt-4">
+      Demo: admin@test.com / admin123
+    </p>
+  </div>
+</div>
